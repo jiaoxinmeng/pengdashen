@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 配置实体类别名 -->
+	<typeAliases>
+		<typeAlias alias="News" type="com.zaasbase.bean.News"/>
+		<typeAlias alias="Base" type="com.zaasbase.bean.Base"/>
+		<typeAlias alias="BaseImg" type="com.zaasbase.bean.BaseImg"/>
+		<typeAlias alias="Expert" type="com.zaasbase.bean.Expert"/>
+		<typeAlias alias="Team" type="com.zaasbase.bean.Team"/>
+		<typeAlias alias="TeamImg" type="com.zaasbase.bean.TeamImg"/>
+		<typeAlias alias="Project" type="com.zaasbase.bean.Project"/>
+		<typeAlias alias="Business" type="com.zaasbase.bean.Business"/>
+		<typeAlias alias="Achievement" type="com.zaasbase.bean.Achievement"/>
+		<typeAlias alias="User" type="com.zaasbase.bean.User"/>
+		<typeAlias alias="UserType" type="com.zaasbase.bean.UserType"/>
+	</typeAliases>
+	<!-- 配置数据映射文件 -->
+	<mappers>
+		<mapper resource="com/zaasbase/dao/BaseMap.xml"/>
+		<mapper resource="com/zaasbase/dao/UserType.xml"/>
+	</mappers>
+
+</configuration>

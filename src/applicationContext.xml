@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:jee="http://www.springframework.org/schema/jee" 
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xsi:schemaLocation="
+  http://www.springframework.org/schema/beans 
+  http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+  http://www.springframework.org/schema/context 
+  http://www.springframework.org/schema/context/spring-context-2.5.xsd
+  http://www.springframework.org/schema/jee 
+  http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+  http://www.springframework.org/schema/tx 
+  http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!-- 定义数据源属性配置文件路径 -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath*:jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 数据源属性配置文件 --> 
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass">
+			<value>${dbo.jdbc.driverClass}</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>${dbo.jdbc.url}</value>
+		</property>
+		<property name="user">
+			<value>${dbo.jdbc.username}</value>
+		</property>
+		<property name="password">
+			<value>${dbo.jdbc.password}</value>
+		</property>
+	</bean>
+	<!-- 数据连接管理 -->
+	<bean id="transactionManager" 
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<!-- myBatis文件 创建SqlSessionFactory，同时指定数据源 -->
+	<bean id="sqlSessionFactory" 
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:myBatis-config.xml"/>
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+		<!--BaseAction-->
+	<bean id="baseAction" class="com.zaasbase.action.BaseAction"
+		scope="prototype">
+		<property name="service" ref="service" />
+	</bean>
+	<!-- 创建数据映射器，数据映射器必须为接口-->
+	<bean id="baseMap" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.zaasbase.dao.InterfaceBase"/>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<!-- 将业务方法注入到数据映射器 -->
+	<bean id="service" class="com.zaasbase.service.CommonServiceImpl">
+		<!-- 注意此处的name必须与service类中注入的一致 -->
+		<property name="baseDao" ref="baseMap"/>
+	</bean>
+	
+
+</beans>
+

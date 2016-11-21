@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	
+	<!-- 将struts的action交由spring管理  不在由struts的工厂介入 -->
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.action.extension" value="do" />
+	
+	<package name="base-default" extends="json-default">
+		
+		<action name="index" class="com.zaasbase.action.IndexAction">
+			<result name="success">index.jsp</result>
+		</action>
+	
+		<action name="news" class="com.zaasbase.action.NewsAction">
+			<result name="page">news_list.jsp</result>
+			<result name="detail">news_detail.jsp</result>
+		</action>
+		
+		<action name="business" class="com.zaasbase.action.BusinessAction">
+			<result name="page">business_list.jsp</result>
+			<result name="detail">business_detail.jsp</result>
+		</action>
+		
+		<action name="achievement" class="com.zaasbase.action.AchievementAction">
+			<result name="page">achievement_list.jsp</result>
+			<result name="detail">achievement_detail.jsp</result>
+		</action>
+		
+		<action name="bases" class="com.zaasbase.action.BasesAction">
+			<result name="detail">base_detail.jsp</result>
+		</action>
+		
+		<action name="expert" class="com.zaasbase.action.ExpertAction">
+			<result name="success">expert_list.jsp</result>
+			<result name="detail">expert_detail.jsp</result>
+		</action>
+		
+		<action name="team" class="com.zaasbase.action.TeamAction">
+			<result name="list">team_list.jsp</result>
+			<result name="detail">team_detail.jsp</result>
+		</action>
+		
+		<action name="project" class="com.zaasbase.action.ProjectAction">
+			<result name="list">project_list.jsp</result>
+			<result name="detail">project_detail.jsp</result>
+		</action>
+		
+		<action name="baseImg" class="com.zaasbase.action.BaseImgAction">
+			<result name="success">base_show.jsp</result>
+		</action>
+	</package>
+	
+	<package name="admin-default" extends="base-default" namespace="/admin">
+		
+		<interceptors>
+			<!-- 拦截器-验证管理员是否登陆 -->
+			<interceptor name="managerLoginInterceptor" class="com.zaasbase.interceptor.ManagerLoginInterceptor"></interceptor>
+			<!-- 拦截器-验证管理员是否有功能区块权限 -->
+			<interceptor name="permissionsInterceptor" class="com.zaasbase.interceptor.PermissionsInterceptor"></interceptor>
+			<!-- 拦截器-验证管理员是否同意相关承诺 -->
+			<interceptor name="commitmentInterceptor" class="com.zaasbase.interceptor.CommitmentInterceptor"></interceptor>
+			
+			<!-- 配置拦截器栈 -->
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="commitmentInterceptor"/>
+				<interceptor-ref name="permissionsInterceptor"/>
+				<interceptor-ref name="managerLoginInterceptor"/>
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+		
+		<!-- 配置默认拦截器 -->
+		<default-interceptor-ref name="myStack"></default-interceptor-ref>
+		
+		<global-results>
+			<result name="commmit">commitment.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="login">login.jsp</result>
+		</global-results>
+		
+		<action name="index" class="com.zaasbase.admin.action.IndexAction">
+			<result name="success">main.jsp</result>
+		</action>
+		
+		<action name="base" class="com.zaasbase.admin.action.BaseManagerAction">
+			<result name="list">base_list.jsp</result>
+			<result name="view">base_detail.jsp</result>
+			<result name="goEdit">base_edit.jsp</result>
+			<result name="edit" type="chain">
+				<param name="method">doView</param>
+    			<param name="actionName">base</param>
+			</result>
+			<result name="imgList">base_img_list.jsp</result>
+			<result name="imgView">base_img_detail.jsp</result>
+			<result name="goImgEdit">base_img_edit.jsp</result>
+			<result name="goImgAdd">base_img_add.jsp</result>
+			<result name="imgAdd" type="chain">
+				<param name="method">doImgList</param>
+    			<param name="actionName">base</param>
+			</result>
+			<result name="imgEdit" type="chain">
+				<param name="method">doImgList</param>
+    			<param name="actionName">base</param>
+			</result>
+			<result name="imgDel" type="chain">
+				<param name="method">doImgList</param>
+    			<param name="actionName">base</param>
+			</result>
+		</action>
+		
+		<action name="news" class="com.zaasbase.admin.action.NewsManagerAction">
+			<result name="list">news_list.jsp</result>
+			<result name="view">news_detail.jsp</result>
+			<result name="goEdit">news_edit.jsp</result>
+			<result name="goAdd">news_add.jsp</result>
+			<result name="edit" type="chain">
+				<param name="method">doView</param>
+    			<param name="actionName">news</param>
+			</result>
+			<result name="del" type="chain">
+				<param name="method">doList</param>
+    			<param name="actionName">news</param>
+			</result>
+			<result name="add" type="chain">
+				<param name="method">doView</param>
+    			<param name="actionName">news</param>
+			</result>
+			<result name="publish" type="json">
+				<param name="root">msg</param>
+			</result>
+			<result name="backPublish" type="json">
+				<param name="root">msg</param>
+			</result>
+		</action>
+		
+		<action name="team" class="com.zaasbase.admin.action.TeamManagerAction">
+			<result name="list">team_list.jsp</result>
+			<result name="view">team_detail.jsp</result>
+			<result name="goEdit">team_edit.jsp</result>
+			<result name="goAdd">team_add.jsp</result>
+			<result name="edit" type="chain">
+				<param name="method">doView</param>
+    			<param name="actionName">team</param>
+			</result>
+			<result name="add" type="chain">
+				<param name="method">doView</param>
+    			<param name="actionName">team</param>
+			</result>
+			<result name="del" type="chain">
+				<param name="method">doList</param>
+    			<param name="actionName">team</param>
+			</result>
+			<result name="imgList">team_img_list.jsp</result>
+			<result name="imgView">team_img_detail.jsp</result>
+			<result name="goImgEdit">team_img_edit.jsp</result>
+			<result name="goImgAdd">team_img_add.jsp</result>
+			<result name="imgEdit" type="chain">
+				<param name="method">doImgList</param>
+    			<param name="actionName">team</param>
+			</result>
+			<result name="imgAdd" type="chain">
+				<param name="method">doImgList</param>
+    			<param name="actionName">team</param>
+			</result>
+			<result name="imgDel" type="chain">
+				<param name="method">doImgList</param>
+    			<param name="actionName">team</param>
+			</result>
+		</action>
+		
+		<action name="achievement" class="com.zaasbase.admin.action.AchievementManagerAction">
+			<result name="list">achievement_list.jsp</result>
+			<result name="view">achievement_detail.jsp</result>
+			<result name="goEdit">achievement_edit.jsp</result>
+			<result name="goAdd">achievement_add.jsp</result>
+			<result name="edit" type="chain">
+				<param name="method">doList</param>
+    			<param name="actionName">achievement</param>
+			</result>
+			<result name="del" type="chain">
+				<param name="method">doList</param>
+    			<param name="actionName">achievement</param>
+			</result>
+			<result name="add" type="chain">
+				<param name="method">doList</param>
+    			<param name="actionName">achievement</param>
+			</result>
+		</action>
+		
+		<action name="project" class="com.zaasbase.admin.action.ProjectManagerAction">
+			<result name="list">project_list.jsp</result>
+			<result name="view">project_detail.jsp</result>
+			<result name="goEdit">project_edit.jsp</result>
+			<result name="goAdd">project_add.jsp</result>
+			<result name="edit" type="chain">
+				<param name="method">doList</param>
+    			<param name="actionName">project</param>
+			</result>
+			<result name="del" type="chain">
+				<param name="method">doList</param>
+    			<param name="actionName">project</param>
+			</result>
+			<result name="add" type="chain">
+				<param name="method">doList</param>
+    			<param name="actionName">project</param>
+			</result>
+		</action>
+		
+		<action name="expert" class="com.zaasbase.admin.action.ExpertManagerAction">
+			<result name="list">expert_list.jsp</result>
+			<result name="view">expert_detail.jsp</result>
+			<result name="goEdit">expert_edit.jsp</result>
+			<result name="goAdd">expert_add.jsp</result>
+			<result name="edit" type="chain">
+				<param name="method">doView</param>
+    			<param name="actionName">expert</param>
+			</result>
+			<result name="del" type="chain">
+				<param name="method">doList</param>
+    			<param name="actionName">expert</param>
+			</result>
+			<result name="add" type="chain">
+				<param name="method">doView</param>
+    			<param name="actionName">expert</param>
+			</result>
+		</action>
+		
+		<action name="user" class="com.zaasbase.admin.action.UserManagerAction">
+			<result name="login">login.jsp</result>
+			<result name="success">main.jsp</result>
+			<result name="loginOut">login.jsp</result>
+			<result name="changePwd">change_password.jsp</result>
+			<result name="list">user_list.jsp</result>
+			<result name="goEdit">user_edit.jsp</result>
+			<result name="goAdd">user_add.jsp</result>
+			<result name="edit" type="chain">
+				<param name="method">doList</param>
+    			<param name="actionName">user</param>
+			</result>
+			<result name="add" type="chain">
+				<param name="method">doList</param>
+    			<param name="actionName">user</param>
+			</result>
+			<result name="del" type="chain">
+				<param name="method">doList</param>
+    			<param name="actionName">user</param>
+			</result>
+			<result name="nextList" type="json">
+				<param name="root">businessList</param>
+			</result>
+			<result name="commited" type="redirectAction">
+				<param name="method">doList</param>
+    			<param name="actionName">base</param>
+			</result>
+		</action>
+		
+		<action name="business" class="com.zaasbase.admin.action.BusinessManagerAction">
+			<result name="list">business_list.jsp</result>
+			<result name="view">business_detail.jsp</result>
+			<result name="goEdit">business_edit.jsp</result>
+			<result name="edit" type="chain">
+				<param name="method">doList</param>
+    			<param name="actionName">business</param>
+    		</result>
+    		<result name="add" type="chain">
+				<param name="method">doList</param>
+    			<param name="actionName">business</param>
+			</result>
+			<result name="del" type="chain">
+				<param name="method">doList</param>
+    			<param name="actionName">business</param>
+			</result>
+			
+		</action>
+	</package>
+	
+</struts>

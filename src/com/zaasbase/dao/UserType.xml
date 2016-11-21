@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+"-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zaasbase.dao.InterfaceBase">
+	<resultMap type="UserType" id="userTypeResultMap">
+		<id property="id" jdbcType="INTEGER" column="id"/>
+		<result property="nameEn" jdbcType="VARCHAR" column="name_en"/>
+		<result property="nameCn" jdbcType="VARCHAR" column="name_cn"/>
+	</resultMap>
+	
+	<select id="getAllUserType" resultMap="userTypeResultMap">
+		select id,name_cn,name_en
+		from user_type
+	</select>
+	
+	<select id="getNameByTypeId" parameterType="Integer" resultType="String">
+		select name_en
+		from user_type
+		where id = #{typeId}
+	</select>
+</mapper>

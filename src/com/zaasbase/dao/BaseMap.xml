@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+"-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<!--  -->
+<mapper namespace="com.zaasbase.dao.InterfaceBase">
+	<!-- News实体类   映射文件 -->
+	<resultMap type="News" id="newsResultMap">
+
+		<id property="id" jdbcType="INTEGER" column="id" />
+		<result property="newsTitle" jdbcType="VARCHAR" column="news_title" />
+		<result property="newsSummary" jdbcType="VARCHAR" column="news_summary" />
+		<result property="newsContent" jdbcType="VARCHAR" column="news_content" />
+		<result property="newsDate" jdbcType="DATE" column="news_date" />
+		<result property="newsAuthor" jdbcType="VARCHAR" column="news_author" />
+		<result property="newsType" jdbcType="INTEGER" column="news_type" />
+		<result property="newsIsPublish" jdbcType="INTEGER" column="news_is_publish" />
+
+	</resultMap>
+	
+	<resultMap type="Achievement" id="achievementResultMap">
+
+		<id property="id" jdbcType="INTEGER" column="id" />
+		<result property="achievementTitle" jdbcType="VARCHAR" column="achievement_title" />
+		<result property="achievementSummary" jdbcType="VARCHAR" column="achievement_summary" />
+		<result property="achievementContent" jdbcType="VARCHAR" column="achievement_content" />
+		<result property="achievementDate" jdbcType="DATE" column="achievement_date" />
+		<result property="achievementAuthor" jdbcType="VARCHAR" column="achievement_author" />
+		<result property="achievementType" jdbcType="INTEGER" column="achievement_type" />
+		<result property="achievementTeamId" jdbcType="INTEGER" column="achievement_team_id" />
+	</resultMap>
+	
+	<!-- Bases实体类   映射文件 -->
+	<resultMap type="Base" id="baseResultMap">
+
+		<id property="id" jdbcType="INTEGER" column="id" />
+		<result property="baseTitle" jdbcType="VARCHAR" column="base_title" />
+		<result property="baseContent" jdbcType="VARCHAR" column="base_content" />
+		<result property="baseLocation" jdbcType="VARCHAR" column="base_location" />
+		<result property="baseLocationDetail" jdbcType="VARCHAR" column="base_location_detail" />
+		<result property="baseImg" jdbcType="VARCHAR" column="base_img" />
+		<result property="baseIsUsed" jdbcType="INTEGER" column="base_is_used" />
+		<result property="baseIndex" jdbcType="INTEGER" column="base_index" />
+	</resultMap>
+	
+		<!--Experts实体类   映射文件 -->
+	<resultMap type="Expert" id="expertResultMap">
+
+		<id property="id" jdbcType="INTEGER" column="id" />
+		<result property="expertName" jdbcType="VARCHAR" column="expert_name" />
+		<result property="expertContent" jdbcType="VARCHAR" column="expert_content" />
+		<result property="expertType" jdbcType="VARCHAR" column="expert_type" />
+		<result property="expertOrder" jdbcType="INTEGER" column="expert_order" />
+		<result property="expertImg" jdbcType="VARCHAR" column="expert_img" />
+		<result property="expertTeam" jdbcType="VARCHAR" column="expert_team" />
+	</resultMap>
+	
+		<!--Team实体类   映射文件 -->
+	<resultMap type="Team" id="teamResultMap">
+
+		<id property="id" jdbcType="INTEGER" column="id" />
+		<result property="teamTitle" jdbcType="VARCHAR" column="team_title" />
+		<result property="teamContent" jdbcType="VARCHAR" column="team_content" />
+		<result property="teamType" jdbcType="VARCHAR" column="team_type" />
+		<result property="teamLogo" jdbcType="VARCHAR" column="team_logo" />
+		<result property="teamImg" jdbcType="VARCHAR" column="team_img" />
+	</resultMap>
+	
+		<!--TeamImg实体类   映射文件 -->
+	<resultMap type="TeamImg" id="teamImgResultMap">
+
+		<id property="id" jdbcType="INTEGER" column="id" />
+		<result property="imgTeamId" jdbcType="INTEGER" column="img_team_id" />
+		<result property="imgName" jdbcType="VARCHAR" column="img_name" />
+		<result property="imgAuthor" jdbcType="VARCHAR" column="img_author" />
+		<result property="imgContent" jdbcType="VARCHAR" column="img_content" />
+		<result property="imgType" jdbcType="VARCHAR" column="img_type" />
+		<result property="imgDate" jdbcType="DATE" column="img_date" />
+	</resultMap>
+	
+	<!--Project实体类   映射文件 -->
+	<resultMap type="Project" id="projectResultMap">
+
+		<id property="id" jdbcType="INTEGER" column="id" />
+		<result property="projectTitle" jdbcType="VARCHAR" column="project_title" />
+		<result property="projectContent" jdbcType="VARCHAR" column="project_content" />
+		<result property="projectTeamId" jdbcType="INTEGER" column="project_team_id" />
+		<result property="projectDate" jdbcType="DATE" column="project_date" />
+		<result property="projectFund" jdbcType="VARCHAR" column="project_fund" />
+		<result property="projectType" jdbcType="VARCHAR" column="project_type" />
+	</resultMap>
+	
+	<!--BaseImg实体类   映射文件 -->
+	<resultMap type="BaseImg" id="baseImgResultMap">
+
+		<id property="id" jdbcType="INTEGER" column="id" />
+		<result property="imgBaseId" jdbcType="INTEGER" column="img_base_id" />
+		<result property="imgName" jdbcType="VARCHAR" column="img_name" />
+		<result property="imgAuthor" jdbcType="VARCHAR" column="img_author" />
+		<result property="imgContent" jdbcType="VARCHAR" column="img_content" />
+		<result property="imgType" jdbcType="VARCHAR" column="img_type" />
+		<result property="imgDate" jdbcType="DATE" column="img_date" />
+	</resultMap>
+	
+	<!-- user实体映射文件 -->
+	<resultMap type="user" id="userResultMap">
+		<id property="id" jdbcType="INTEGER" column="id"/>
+		<result property="loginName" jdbcType="VARCHAR" column="login_name"/>
+		<result property="password" jdbcType="VARCHAR" column="password"/>
+		<result property="name" jdbcType="VARCHAR" column="name"/>
+		<result property="lastLoginDate" jdbcType="TIMESTAMP" column="last_login_date"/>
+		<result property="typeId" jdbcType="INTEGER" column="type_id"/>
+		<result property="typeName" jdbcType="VARCHAR" column="typeName"/>
+		<result property="isCommit" jdbcType="VARCHAR" column="is_commit"/>
+	</resultMap>
+	
+		<!--Business实体类   映射文件 -->
+	<resultMap type="Business" id="businessResultMap">
+
+		<id property="id" jdbcType="INTEGER" column="id" />
+		<result property="businessTitle" jdbcType="INTEGER" column="business_title" />
+		<result property="businessContent" jdbcType="VARCHAR" column="business_content" />
+		<result property="businessSummary" jdbcType="INTEGER" column="business_summary" />
+		<result property="businessImg" jdbcType="VARCHAR" column="business_img" />
+	
+	</resultMap>
+
+	<!-- 查询所有新闻 -->
+	<select id="getAllNews" resultMap="newsResultMap">
+		select * from news
+		where news_is_publish = 1 
+		order by news_date desc
+		
+	</select>
+
+	<!-- 查询所有新闻by news_type-->
+	<select id="getAllNewsByType" parameterType="Integer" resultMap="newsResultMap">
+		select * from news
+		where news_type = #{newsType} and news_is_publish = 1 
+		order by news_date desc
+	</select>
+
+	<!-- 查询部分新闻by news_type-->
+	<select id="getPartNewsByType" resultMap="newsResultMap">
+		select top ${top} *
+		from news
+		where news_type =#{newsType} and news_is_publish = 1 
+		order by news_date desc
+	</select>
+
+	<!-- 根据新闻id获取详细信息 -->
+	<select id="getNewsById" parameterType="Integer" resultMap="newsResultMap">
+		select * from news
+		where id = #{id}
+	</select>
+
+	<!-- 添加新闻信息 -->
+	<insert id="addNews"  useGeneratedKeys="true" keyProperty="id" parameterType="News">
+		insert into news
+		(news_title,news_summary,news_content,news_date,news_author,news_type,news_is_publish)
+		values(#{newsTitle jdbcType=VARCHAR},#{newsSummary
+		jdbcType=VARCHAR},#{newsContent jdbcType=VARCHAR},#{newsDate
+		jdbcType=DATE},#{newsAuthor jdbcType=VARCHAR},#{newsType jdbcType=INTEGER},#{newsIsPublish jdbcType=INTEGER})
+	</insert>
+
+	<!-- 更新新闻信息 -->
+	<update id="updateNews" parameterType="News">
+		update news
+		set news_title = #{newsTitle jdbcType=VARCHAR},
+		news_summary = #{newsSummary jdbcType=VARCHAR},
+		news_content = #{newsContent jdbcType=VARCHAR},
+		news_date = #{newsDate jdbcType=DATE},
+		news_author = #{newsAuthor jdbcType=VARCHAR},
+		news_type = #{newsType jdbcType=INTEGER},
+		news_is_publish = #{newsIsPublish jdbcType=INTEGER}
+		where id = #{id}
+	</update>
+
+	<!-- 删除新闻 -->
+	<delete id="deleteNews" parameterType="Integer">
+		delete news
+		where id = #{id}
+	</delete>
+	
+	<!-- 前台新闻列表 -->
+	<select id="getNewsPage"  resultMap="newsResultMap">
+		select *
+		from (
+		select row_number()over(order by
+		tempcolumn)temprownumber,*
+		from (select top ${pageSize} tempcolumn=0,*
+		from news
+		where news_type = #{newsType} and news_is_publish = 1
+		order by news_date desc
+		)t
+		)tt
+		where temprownumber>#{page}
+
+	</select>
+	
+	<!-- 后台新闻列表 -->
+	<select id="getNewsPageAll"  resultMap="newsResultMap">
+		select *
+		from (
+		select row_number()over(order by
+		tempcolumn)temprownumber,*
+		from (select top ${pageSize} tempcolumn=0,*
+		from news
+		where news_type = #{newsType}
+		order by news_date desc
+		)t
+		)tt
+		where temprownumber>#{page}
+
+	</select>
+	
+	<!-- 查询所有基地 -->
+	<select id="getAllBase" resultMap="baseResultMap">
+		select * from base
+		where base_is_used = 1
+		order by base_index
+	</select>
+	
+	<!-- 根据base id获取详细信息 -->
+	<select id="getBaseById" parameterType="Integer" resultMap="baseResultMap">
+		select * from base
+		where id = #{id}
+	</select>
+	
+	<!-- 查询所有基地 -->
+	<select id="getAllexpert" resultMap="expertResultMap">
+		select * from expert
+		order by expert_type,id
+	</select>
+	
+	<!-- 根据expert id获取详细信息 -->
+	<select id="getExpertById" parameterType="Integer" resultMap="expertResultMap">
+		select * from expert
+		where id = #{id}
+	</select>
+	
+	<!-- 专家列表 -->
+	<select id="getExpertsPage"  resultMap="expertResultMap">
+		select *
+		from (
+		select row_number()over(order by
+		tempcolumn)temprownumber,*
+		from (select top ${pageSize} tempcolumn=0,*
+		from expert
+		  <if test="expertType!=0">where expert_type = #{expertType}</if>
+		)t
+		)tt
+		where temprownumber>#{page}
+	</select>
+	
+	<!-- 查询部分课题组-->
+	<select id="getPartTeam"  parameterType="Integer"  resultMap="teamResultMap">
+		select top ${top} *
+		from team
+		order by id
+	</select>
+	
+	<!-- 查询部分课题组-->
+	<select id="getAllTeam"  resultMap="teamResultMap">
+		select  *
+		from team
+		order by id
+	</select>
+	
+	<!-- 根据team id获取详细信息 -->
+	<select id="getTeamById" parameterType="Integer"  resultMap="teamResultMap">
+		select * from team
+		where id = #{id}
+	</select>
+
+	
+	<!-- 根据team id获取详细信息 -->
+	<select id="getProjectListByTeamId" parameterType="Integer"  resultMap="projectResultMap">
+		select * from project
+		where project_team_id = #{teamId}
+	</select>
+	
+	<!-- 项目列表 -->
+	<select id="getProjectPage"  resultMap="projectResultMap">
+		select *
+		from (
+		select row_number()over(order by
+		tempcolumn)temprownumber,*
+		from (select top ${pageSize} tempcolumn=0,*
+		from project
+		 
+		)t
+		)tt
+		where temprownumber>#{page}
+	</select>
+	
+		<!-- 根据project id获取详细信息 -->
+	<select id="getProjectById" parameterType="Integer"  resultMap="projectResultMap">
+		select * from project
+		where id = #{id}
+	</select>
+	
+		<!-- 根据base id获取图片 -->
+	<select id="getAllBaseImg" parameterType="Integer"  resultMap="baseImgResultMap">
+		select * from base_img
+		where img_base_id = #{baseId}
+	</select>
+		
+		<!-- 根据project id获取详细信息 -->
+	<select id="getBusinessById" parameterType="Integer"  resultMap="businessResultMap">
+		select * from business
+		where id = #{id}
+	</select>
+	
+	<!-- 项目列表 -->
+	<select id="getBusinessPage"  resultMap="businessResultMap">
+		select *
+		from (
+		select row_number()over(order by
+		tempcolumn)temprownumber,*
+		from (select top ${pageSize} tempcolumn=0,*
+		from business
+		)t
+		)tt
+		where temprownumber>#{page}
+	</select>
+	
+		<!-- 根据base id获取图片 -->
+	<select id="getTeamListByTeamId" parameterType="Integer"  resultMap="teamImgResultMap">
+		select * from team_img
+		where img_team_id = #{teamId}
+	</select>
+	
+	<!-- 根据新闻id获取详细信息 -->
+	<select id="getAchievementById" parameterType="Integer" resultMap="achievementResultMap">
+		select * from achievement
+		where id = #{id}
+	</select>
+	
+		<!-- 根据project id获取详细信息 -->
+	<select id="getAllAchievementByType" parameterType="Integer"  resultMap="achievementResultMap">
+		select * from achievement
+		where achievement_type = #{achievementType}
+	</select>
+	
+		<!-- 成果列表 -->
+	<select id="getAchievementPage"  resultMap="achievementResultMap">
+		select *
+		from (
+		select row_number()over(order by
+		tempcolumn)temprownumber,*
+		from (select top ${pageSize} tempcolumn=0,*
+		from achievement
+		  where achievement_type = #{achievementType}
+		)t
+		)tt
+		where temprownumber>#{page}
+	</select>
+	
+	<!-- 根据team id获取列表 -->
+	<select id="getAchievementListByTeamId" parameterType="Integer"  resultMap="achievementResultMap">
+		select * from achievement
+		where achievement_team_id = #{teamId}
+	</select>
+	
+	<select id="getAllBusiness" resultMap="businessResultMap">
+		select * from business
+	</select>
+	
+	<!-- 项目列表 -->
+	<select id="getProjectPageByTeamId"  resultMap="projectResultMap">
+		select *,team.team_title as project_team
+		from (
+		select row_number()over(order by
+		tempcolumn)temprownumber,*
+		from (select top ${pageSize} tempcolumn=0,*
+		from project
+		 <if test="teamId!=0"> where project_team_id = #{teamId}</if>
+		 order by project_team_id,project_date desc
+		)t
+		)tt left join team on team.id = tt.project_team_id
+		where temprownumber>#{page}
+	</select>
+		
+	<!-- 更新基地信息 -->
+	<update id="updateBase" parameterType="Base">
+		update base
+		set base_title = #{baseTitle},
+			base_content = #{baseContent},
+			base_location = #{baseLocation},
+			base_img = #{baseImg}
+		where id = #{id}
+	</update>
+	
+		<!-- new team -->
+	<insert id="addTeam" parameterType="Team" useGeneratedKeys="true" keyProperty="id">
+		insert into team (team_title,team_content,team_type,team_logo,team_img)
+			values(#{teamTitle jdbcType=VARCHAR},#{teamContent jdbcType=VARCHAR},#{teamType jdbcType=VARCHAR},#{teamLogo jdbcType=VARCHAR},#{teamImg jdbcType=VARCHAR})
+	</insert>
+		
+		<!-- new teamImg -->
+	<insert id="addTeamImg" parameterType="TeamImg" useGeneratedKeys="true" keyProperty="id">
+		insert into team_img (img_team_id,img_name,img_author,img_date,img_type,img_content)
+			values(#{imgTeamId jdbcType=INTEGER},#{imgName jdbcType=VARCHAR},#{imgAuthor jdbcType=VARCHAR},#{imgDate jdbcType=DATE},#{imgType jdbcType=VARCHAR},#{imgContent jdbcType=VARCHAR})
+	</insert>	
+	
+		<!-- update team -->
+	<update id="updateTeam" parameterType="Team">
+		update team 
+		set team_title = #{teamTitle jdbcType=VARCHAR},
+			team_content = #{teamContent jdbcType=VARCHAR},
+			team_type = #{teamType jdbcType=VARCHAR},
+			team_logo = #{teamLogo jdbcType=VARCHAR},
+			team_img = #{teamImg jdbcType=VARCHAR}
+		where id = #{id}	
+	</update>
+	
+		<!-- update teamImg -->
+	<update id="updateTeamImg" parameterType="TeamImg">
+		update team_img
+		set img_team_id = #{imgTeamId jdbcType=INTEGER},
+		    img_name = #{imgName jdbcType=VARCHAR},
+		    img_author = #{imgAuthor jdbcType=VARCHAR},
+		    img_date = #{imgDate jdbcType=DATE},
+		    img_type = #{imgType jdbcType=VARCHAR},
+		    img_content = #{imgContent jdbcType=VARCHAR}
+		where id = #{id}
+	</update>
+	
+		<!-- del team -->
+	<delete id="delTeam" parameterType="Integer">
+		delete team
+		where id = #{id}
+	</delete>
+	
+		<!-- del teamImg -->
+	<delete id="delTeamImg" parameterType="Integer">
+		delete team_img
+		where id = #{id}
+	</delete>
+	
+		<!-- get teamImg bean -->
+	<select id="getTeamImgById" parameterType="Integer" resultMap="teamImgResultMap">
+		select * from team_img where id = #{id}
+	</select>
+	
+	<insert id="addAchievement" parameterType="Achievement" useGeneratedKeys="true" keyProperty="id">
+		insert into achievement(achievement_title,achievement_summary,achievement_content,achievement_date,achievement_author,achievement_type)
+			values(#{achievementTitle jdbcType=VARCHAR},#{achievementSummary jdbcType=VARCHAR},#{achievementContent jdbcType=VARCHAR},#{achievementDate jdbcType=DATE},#{achievementAuthor jdbcType=VARCHAR},#{achievementType jdbcType=INTEGER})
+	</insert>
+	
+	<update id="updateAchievement" parameterType="Achievement">
+		update achievement
+		set achievement_title = #{achievementTitle jdbcType=VARCHAR},
+			achievement_summary = #{achievementSummary jdbcType=VARCHAR},
+			achievement_content = #{achievementContent jdbcType=VARCHAR},
+			achievement_date = #{achievementDate jdbcType=DATE},
+			achievement_author = #{achievementAuthor jdbcType=VARCHAR},
+			achievement_type = #{achievementType jdbcType=INTEGER}
+		where id = #{id}
+	</update>
+	
+	<delete id="delAchievement" parameterType="Integer">
+		delete achievement where id = #{id}
+	</delete>
+	
+	<insert id="addProject" parameterType="Project"  useGeneratedKeys="true" keyProperty="id">
+		insert into project (project_title,project_content,project_team_id,project_date,project_fund,project_type)
+			values(#{projectTitle jdbcType=VARCHAR},#{projectContent jdbcType=VARCHAR},#{projectTeamId jdbcType=INTEGER},#{projectDate jdbcType=DATE},#{projectFund jdbcType=INTEGER},#{projectType jdbcType=VARCHAR})
+	</insert>
+	
+	<update id="updateProject" parameterType="Project">
+		update project 
+		set project_title = #{projectTitle jdbcType=VARCHAR},
+			project_content = #{projectContent jdbcType=VARCHAR},
+			project_team_id = #{projectTeamId jdbcType=INTEGER},
+			project_date = #{projectDate jdbcType=DATE},
+			project_fund = #{projectFund jdbcType=INTEGER},
+			project_type = #{projectType jdbcType=VARCHAR}
+		where id = #{id}	
+	</update>
+		
+	<delete id="delProject" parameterType="Integer">
+		delete project where id = #{id}
+	</delete>
+	
+	<insert id="addExpert" parameterType="Expert" useGeneratedKeys="true" keyProperty="id">
+		insert into expert (expert_name,expert_content,expert_type,expert_order,expert_summary,expert_img,expert_team)
+			values(#{expertName jdbcType=VARCHAR},#{expertContent jdbcType=VARCHAR},#{expertType jdbcType=VARCHAR},#{expertOrder jdbcType=INTEGER},#{expertSummary jdbcType=VARCHAR},#{expertImg jdbcType=VARCHAR},#{expertTeam jdbcType=INTEGER})
+	</insert>
+	
+	<update id="updateExpert" parameterType="Expert">
+		update expert
+		set expert_name = #{expertName jdbcType=VARCHAR},
+			expert_content = #{expertContent jdbcType=VARCHAR},
+			expert_type = #{expertType jdbcType=VARCHAR},
+			expert_order = #{expertOrder jdbcType=INTEGER},
+			expert_summary = #{expertSummary jdbcType=VARCHAR},
+			expert_img = #{expertImg jdbcType=VARCHAR},
+			expert_team = #{expertTeam jdbcType=INTEGER}
+		where id = #{id}
+	</update>
+	
+	<delete id="delExpert" parameterType="Integer">
+		delete expert where id = #{id}
+	</delete>
+	
+	<select id="getExpertByteamId" resultMap="expertResultMap">
+		select *,team.team_title as expert_team_name
+		from (
+		select row_number()over(order by tempcolumn)temprownumber,*
+		from (select top ${pageSize} tempcolumn=0,* from expert
+			<if test="teamId!=0"> where expert_team = #{teamId}</if>
+		order by expert_team,expert_name
+		)t
+		)tt left join team on team.id = tt.expert_team
+		where temprownumber>#{page}
+	</select>
+	
+	<select id="getCountFromExpertByTeamId" parameterType="Integer" resultType="Integer">
+		select count(*) from expert 
+		<if test="_parameter!=0">where expert_team = #{_parameter}</if>
+	</select>
+	
+	<select id="getBaseImgById" parameterType="Integer" resultMap="baseImgResultMap">
+		select *,base.base_title as img_base
+		from base_img left join base on base.id = base_img.img_base_id
+		where base_img.id = #{id}
+	</select>
+	
+	<update id="updateBaseImg" parameterType="BaseImg">
+		update base_img
+		set img_base_id = #{imgBaseId jdbcType=INTEGER},
+			img_name = #{imgName jdbcType=VARCHAR},
+			img_author = #{imgAuthor jdbcType=VARCHAR},
+			img_date = #{imgDate jdbcType=DATE},
+			img_type = #{imgType jdbcType=INTEGER},
+			img_content = #{imgContent jdbcType=VARCHAR}
+		where id = #{id}
+	</update>
+	
+	<insert id="addBaseImg" parameterType="BaseImg" useGeneratedKeys="true" keyProperty="id">
+		insert into base_img (img_base_id,img_name,img_author,img_date,img_type,img_content)
+			values (#{imgBaseId jdbcType=INTEGER},#{imgName jdbcType=VARCHAR},#{imgAuthor jdbcType=VARCHAR},#{imgDate jdbcType=DATE}, #{imgType jdbcType=INTEGER},#{imgContent jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="delBaseImg" parameterType="Integer">
+		delete base_img
+		where id = #{id}
+	</delete>
+	
+	<select id="getPassword" parameterType="String" resultMap="userResultMap">
+		select * from users where login_name = #{loginName jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getUserById" parameterType="Integer" resultMap="userResultMap">
+		select * from users where id = #{id}
+	</select>
+	
+	<update id="updateUser" parameterType="User">
+		update users
+		set 
+			password = #{password jdbcType=VARCHAR}
+			<if test="loginName!=null">
+				, login_name = #{loginName jdbcType=VARCHAR}
+			</if>
+			<if test="name!=null">
+				, name = #{name jdbcType=VARCHAR}
+			</if>
+			<if test="lastLoginDate!=null">
+				, last_login_date = #{lastLoginDate jdbcType=TIMESTAMP}
+			</if>
+			<if test="typeId!=null">
+				, type_id = #{typeId jdbcType=INTEGER}
+			</if>
+			<if test="moudleId!=null">
+				, moudle_id = #{moudleId jdbcType=INTEGER}
+			</if>
+		where id = #{id}
+	</update>
+	
+	<select id="getUsers" resultMap="userResultMap">
+		select users.id,users.login_name,users.password,users.name,users.last_login_date,users.type_id,users.moudle_id,user_type.name_cn as typeName 
+		from users left join user_type on users.type_id = user_type.id
+	</select>
+	
+	<delete id="delUser" parameterType="Integer">
+		delete from users where id = #{id}
+	</delete>
+	
+	<insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+		insert into users(login_name,password,name,last_login_date,type_id,moudle_id)
+			values(#{loginName jdbcType=VARCHAR},#{password jdbcType=VARCHAR},#{name jdbcType=VARCHAR},#{lastLoginDate jdbcType=TIMESTAMP},#{typeId jdbcType=INTEGER},#{moudleId jdbcType=INTEGER})
+	</insert>
+	
+	<insert id="addBusiness" parameterType="Business">
+		insert into business (business_title,business_content,business_summary,business_img)
+			values(#{businessTitle jdbcType=VARCHAR},#{businessContent jdbcType=VARCHAR},#{businessSummary jdbcType=VARCHAR},#{businessImg jdbcType=VARCHAR})
+	</insert>
+	
+	<update id="updateBusiness" parameterType="Business">
+		update business
+		set business_title = #{businessTitle jdbcType=VARCHAR},
+			business_content = #{businessContent jdbcType=VARCHAR},
+			business_summary = #{businessSummary jdbcType=VARCHAR},
+			business_img = #{businessImg jdbcType=VARCHAR}
+		where id = #{id jdbcType=INTEGER}
+	</update>
+	
+	<delete id="delBusiness" parameterType="Integer">
+		delete from business
+		where id = #{id}
+	</delete>
+	
+	<!-- 发布news -->
+	<update id="publishNews" parameterType="Integer">
+		update news
+		set news_is_publish = 1
+		where id = #{id}
+	</update>
+	
+	<!-- 撤回news -->
+	<update id="backPublishNews" parameterType="Integer">
+		update news
+		set news_is_publish = 0
+		where id = #{id}
+	</update>
+	
+	<!-- commit 2016-06-13 -->
+	<update id="doCommit" parameterType="Integer">
+		update users
+		set is_commit = 1
+		where id = #{id}
+	</update>
+	
+</mapper>	
